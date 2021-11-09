@@ -1,0 +1,114 @@
+{% load static %}
+<html>
+    <head>
+        <title>Social Network</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Bootstrap CSS-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body bgcolor="#ffffff">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="">Social Network</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Welcome, {{user.username}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+            
+                    {% else %}
+            
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+            
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+
+        <br/><br/><br/><br/>
+        
+        <div style="text-align:center;">
+            <div class="container">
+                {% if messages_data %}
+                <p>Write something for the whole world to see or check other users posts</p>
+                {% else %}
+                <br/><br/><br/><br/>
+                <h1>Nothing here, be the first one to post something</h1>
+                <br/><br/>
+                {% endif %}
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create post</button><br/><br/><br/>
+                {% if messages_data %}
+                <div style="width: 50%; margin-left: 25%; border-bottom: 1px solid lightgrey;"></div> <br/><br/><br/>
+                {% endif %}
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/submit_message/">
+                                    {% csrf_token %}
+                                    <textarea name="message" class="form-control" id="message" rows="3" placeholder="Write message..."></textarea></br></br>
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit post</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+              </div>
+        </div>
+
+        {% for item in messages_data reversed %}
+        <div style="text-align: center;">
+            <div style="width: 90%; background-color: #f1f1f1; padding: 10px; margin-bottom: 10px; margin-left: 5%;">
+                <h6>Created by: {{ item.author }} ({{ item.email }})</h6>
+                <p>{{ item.message }}</p><br/>
+
+                <form method="POST" action="/new_like/">
+                    {% csrf_token %}
+                    <input type="hidden" name="message_id" value="{{ item.id }}">
+                    {% if user not in item.liked.all %}
+                    <div onclick="likeFunction(this.id);" id="{{ item.id }}" name="up_{{ item.id }}" class="columnbar2">
+                        <button type="submit" name="likes" class="btn btn-primary"><i class="fa fa-heart-o" aria-hidden="true"> love it ({{ item.liked.all.count }})</i></button>
+                    </div>
+                    {% else %}
+                    <div onclick="likeFunction(this.id);" id="{{ item.id }}" name="up_{{ item.id }}" class="columnbar2">
+                        <button type="submit" name="likes" class="btn btn-primary"><i class="fa fa-heart" aria-hidden="true"> love it ({{ item.liked.all.count }})</i></button>
+                    </div>
+                    {% endif %}
+                </form>               
+            </div>
+        </div>
+        {% endfor %}
+        <br/><br/>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
