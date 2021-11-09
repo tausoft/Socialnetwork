@@ -201,11 +201,10 @@ def submit_message(request):
     if request.method == "POST":
         current_user = request.user
         message = request.POST["message"]
-        created_by = current_user.username
         author = current_user
         email = current_user.email
 
-        messages_table = Messages(message=message, created_by=created_by, email=email, author=author)
+        messages_table = Messages(message=message, email=email, author=author)
         messages_table.save()
 
         return HttpResponseRedirect('/')

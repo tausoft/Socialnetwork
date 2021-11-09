@@ -36,7 +36,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"panda\",\r\n    \"password\": \"Andjela2019\"\r\n}",
+					"raw": "{\r\n    \"username\": \"test_user\",\r\n    \"password\": \"Testpassword1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -168,7 +168,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"jez\",\r\n    \"email\": \"jez@gmail.com\",\r\n    \"password\": \"Andjela2019\"\r\n}",
+					"raw": "{\r\n    \"username\": \"test_username\",\r\n    \"email\": \"test_username@gmail.com\",\r\n    \"password\": \"Testpassword1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
