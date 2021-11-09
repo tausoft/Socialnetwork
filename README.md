@@ -18,13 +18,13 @@ Setup virtual environment with Python 3.8 and activate it
 
 Install requirements from requirements.txt file
 
-- 'pip install -r requirements.txt or pip3 install -r requirements.txt for python 3.x (in case multiple versions are installed)'
+- `pip install -r requirements.txt or pip3 install -r requirements.txt for python 3.x (in case multiple versions are installed)`
 
 Run Django server
 
 
-- 'cd django_rest'
-- 'python manage.py runserver
+- `cd django_rest`
+- `python manage.py runserver`
 
 <h1>Usage</h1>
 
