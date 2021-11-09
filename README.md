@@ -23,7 +23,7 @@ Install requirements from requirements.txt file
 Run Django server
 
 
-- `cd django_rest`
+- `cd Socialnetwork\django_rest`
 - `python manage.py runserver`
 
 <h1>Usage</h1>
