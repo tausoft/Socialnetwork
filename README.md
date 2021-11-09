@@ -1,4 +1,4 @@
-<h1>Kafka & FastAPI</h1>
+<h1>Django REST</h1>
 Django Social Network app with REST API &amp; Postman test collections
 
 <h1>Pre-Requisites</h1>
