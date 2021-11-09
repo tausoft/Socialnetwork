@@ -36,6 +36,12 @@ Open localhost url (http://127.0.0.1:8000/) in browser and you will be redirecte
 
 <b>Django REST framework</b>
 
+API endpoints are under `http://127.0.0.1:8000/api/users/` and `http://127.0.0.1:8000/api/messages/` urls. User API is protected with IsAuthenticated permission class, so you have to login for access. Messages API is under AllowAny permission class, so you can access it without logging in.
 
+<b>Postman Functionality tests</b>
+
+After you login to Postman go and import Collections provided in `postman API tests` dir. You can find more informations on https://learning.postman.com/docs/getting-started/importing-and-exporting-data/
+
+Select `Messages Collection` and click on `Run` button and than clik on `Run Messages Collection` and wait for test results. Repeat steps with `User Collection`, but note that once the user is created, re-running the test will result with `Fail` on `POST Register`. To re-run the User tests you will have to edit Body params in `POST Register` request and enter different `username`, `email` and `password`.
 
 Happy developing :)
