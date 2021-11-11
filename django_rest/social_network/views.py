@@ -60,8 +60,8 @@ def user_enrichment(user):
     now_month = now.strftime("%m")
     now_day = now.strftime("%d")
 
-    now_month = '05'
-    now_day = '01'
+    #now_month = '05'
+    #now_day = '01'
     
     status_country = ''
     status_holidays = ''
