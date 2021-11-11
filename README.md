@@ -34,6 +34,8 @@ Superuser/password is admin/admin.
 
 Open localhost url (http://127.0.0.1:8000/) in browser and you will be redirected to Signup/Login form - Crispy forms module with bootstrap that already has all functionalities built in. Signup to start browsing Social Network and create new posts. You can also create a number of new users and preview/like/unlike yours or other users posts.
 
+Threading is used for User data enrichment that performes asynchronously, i.e. independently of the signup route API request processing. Based on geolocation of the IP, if the signup date coincides with a holiday in the User’s country, we save that info (API - https://app.abstractapi.com/dashboard).
+
 <b>Django REST framework</b>
 
 API endpoints are under `http://127.0.0.1:8000/api/users/` and `http://127.0.0.1:8000/api/messages/` urls. User API is protected with IsAuthenticated permission class, so you have to login for access. Messages API is under AllowAny permission class, so you can access it without logging in.
